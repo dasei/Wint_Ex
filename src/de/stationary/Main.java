@@ -11,14 +11,19 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
+		System.out.println("listing");
+		for(SerialPort s :SerialPort.getCommPorts()){
+			System.out.println(s.getSystemPortName());
+		}
+		
 		//Initialisiere Serielle Schnittstelle
-		SerialPort chosenPort = SerialPort.getCommPort("COM3");
+		SerialPort chosenPort = SerialPort.getCommPort("COM8");
 		chosenPort.setBaudRate(250000);
 		chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
 		
 		arduinoCom = new ArduinoCommunicator(chosenPort);
 		
-
+		startCommunication();
 	}
 	
 	private static void startCommunication(){
@@ -33,8 +38,9 @@ public class Main {
 			
 			arduinoCom.send("helloo".toCharArray());
 			
-			arduinoCom.registerInputs();	
+			arduinoCom.startInputCollectorLoop();	
 			
+			System.out.println("communication ended");
 		} 
 //-----------------------------------------------------------------------------------
 		else{
