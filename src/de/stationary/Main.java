@@ -8,6 +8,9 @@ public class Main {
 
 	private static ArduinoCommunicator arduinoCom;
 	
+	/**
+	 * Dieses Programm sollte auf dem Raspberry Pi, der mit dem Arduino verbunden in der Wetterstation steht, laufen
+	 */
 	public static void main(String[] args) {
 		
 		
@@ -18,7 +21,7 @@ public class Main {
 		
 		//Initialisiere Serielle Schnittstelle
 		SerialPort chosenPort = SerialPort.getCommPort("COM8");
-		chosenPort.setBaudRate(250000);
+		chosenPort.setBaudRate(9600);
 		chosenPort.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
 		
 		arduinoCom = new ArduinoCommunicator(chosenPort);
