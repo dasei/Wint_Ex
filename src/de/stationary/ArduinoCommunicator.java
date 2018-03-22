@@ -34,7 +34,7 @@ public class ArduinoCommunicator {
 	public void startInputCollectorLoop(){
 		BufferedReader reader = new BufferedReader(new InputStreamReader(this.getPort().getInputStream()));
 		
-		float[] pureData = new float[7];
+		float[] pureData = new float[6];
 		int dataCursor = 0;
 		String inputLine;
 		
