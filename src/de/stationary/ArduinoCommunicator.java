@@ -83,16 +83,17 @@ public class ArduinoCommunicator {
 		
 		try{
 			
-			System.out.println("Initializing socket");
+			System.out.println("Connecting to Webserver...");
 			Socket s = new Socket(webserverAddress, webserverPort);
-			System.out.println("Initialized socket");
+			System.out.println("Connection to Webserver successfully established");
 			
 			if(s.isConnected()){
-				System.out.println("socket is connected");
 				PrintWriter writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
 				writer.println(lineToSend);
 				writer.flush();
 				writer.close();				
+			}else{
+				System.out.println("[ERROR]: Socket connected??? => not sending data");				
 			}
 			
 			//Thread.sleep(500);
