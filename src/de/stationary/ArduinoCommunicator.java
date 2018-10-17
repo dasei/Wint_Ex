@@ -52,14 +52,16 @@ public class ArduinoCommunicator {
 				
 				if(inputLine.equals("start")){
 					dataCursor = 0;
-					storeLog("INFO", "started new data-reading");
+//					storeLog("INFO", "started new data-reading");
+					System.out.println("started new data-reading");
 				}else if(inputLine.equals("end")){
+					System.out.println("	-data-reading ended successfully");
 					sendDataToWebserver(pureData);
 					storeData(convertToStorageFormat(pureData));
-					storeLog("INFO", "	-data-reading ended successfully");
+//					storeLog("INFO", "	-data-reading ended successfully");
 				}else{
 					pureData[dataCursor] = Float.parseFloat(inputLine);
-					dataCursor++;
+					dataCursor++;					
 				}
 				
 			
@@ -72,8 +74,8 @@ public class ArduinoCommunicator {
 	}
 	
 	
-	private String webserverAddress = "localhost";
-	private int webserverPort = 7637;
+	private String webserverAddress = "lamp";
+	private int webserverPort = 25123;
 	public void sendDataToWebserver(float[] pureData){
 		
 		String lineToSend = "";
@@ -98,6 +100,8 @@ public class ArduinoCommunicator {
 			//Thread.sleep(500);
 			
 			s.close();
+			
+			System.out.println("sent data successfully");
 			
 		}catch(Exception exc){}
 		
